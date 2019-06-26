@@ -7,7 +7,7 @@ def matrix2array(matrix):
         for j in range (0,matrix_size):
             splitted_row += matrix_temp[i][j]
         splitted_matrix += [splitted_row]
-    print(splitted_matrix)
+    #print(splitted_matrix)
     return splitted_matrix
 
 def matrix_reverse(matrix):
@@ -23,12 +23,24 @@ def matrix_reverse(matrix):
                 a = matrix[i][j]
                 matrix[i][j] = matrix[j][i] 
                 matrix[j][i] = a
-                print(matrix[i][j]+" "+matrix[j][i])
-    print(matrix)
+               # print(matrix[i][j]+" "+matrix[j][i])
+    matrix_print(matrix)
+
+def matrix_print(matrix):
+    for line in matrix:
+        print(*line)
 
 matrix = """
 123
 456
 789"""
+matrix_array = matrix2array(matrix)
+matrix_reverse(matrix_array)
+print()
+matrix = """
+1111
+2222
+3333
+4444"""
 matrix_array = matrix2array(matrix)
 matrix_reverse(matrix_array)
