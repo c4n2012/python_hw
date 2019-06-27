@@ -25,7 +25,7 @@ class Employee(object):
         elif self.expirience_years > 5:
             bonus = 500 + self.salary*0.2
         gross_salary = self.salary + bonus 
-        print (self.name + ' ' +  self.second_name + ' - experience - '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
+        print (self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
 
 class Designer(Employee):
     def __init__(self,name,second_name,salary,expirience_years,main_manager,coefficient):
