@@ -5,9 +5,9 @@ Create structure for department:
 
 + Each designer has effectivness coefficient(0-1)
 
-Each manager has team of developers and designers.
++ Each manager has team of developers and designers.
 
-Department should have list of managers(which have their own teams)
++Department should have list of managers(which have their own teams)
 
 Department should be able to give salary (for each employee message: "@firstName@ @secondName@: got salary: @salaryValue@")
 

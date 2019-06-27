@@ -5,7 +5,10 @@ class Department(object):
         self.managers = managers
 
     def give_salary(self):
-
+        for manager in self.managers:
+            manager.got_salary()
+            for employee in manager.team_members:
+                employee.got_salary()
 
 class Employee(object):
     def __init__(self,name,second_name,salary,expirience_years,main_manager):
@@ -21,34 +24,38 @@ class Employee(object):
             bonus = 200
         elif self.expirience_years > 5:
             bonus = 500 + self.salary*0.2
-        print (self.name + ' ' +  self.second_name + ' got salary ' + (self.salary + bonus))
+        gross_salary = self.salary + bonus 
+        print (self.name + ' ' +  self.second_name + ' experience '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
 
 class Designer(Employee):
     def __init__(self,name,second_name,salary,expirience_years,main_manager,coefficient):
-        super.__init__(name,second_name,salary,expirience_years,main_manager)
+        super().__init__(name,second_name,salary,expirience_years,main_manager)
         self.coefficient = coefficient
 
     def got_salary(self):
         bonus = 0
-        fact_salary = self.salary*self.coefficient
+        fact_salary = self.salary * self.coefficient
         if  2 < self.expirience_years < 5:
             bonus = 200
         elif self.expirience_years > 5:
             bonus = 500 + fact_salary*0.2
-        print (self.name + ' ' +  self.second_name + ' got salary ' + (fact_salary + bonus))
+        gross_salary = fact_salary + bonus
+        print (self.name + ' ' +  self.second_name + ' experience '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
 
 class Developer(Employee):
     pass
 
 class Manager(Employee):
-    def __init__(self, name, second_name, salary, expirience_years, main_manager,team_members):
-        super.__init__(name, second_name, salary, expirience_years, main_manager)
+    def __init__(self, name, second_name, salary, expirience_years, main_manager, team_members):
+        super().__init__(name, second_name, salary, expirience_years, main_manager)
+        self.team_members = team_members
 
     def got_salary(self):
         bonus = 0
         team_bonus = 0
         developer_bonus = 0
         developer_counter = 0
+        fact_salary =  self.salary
 # team developers quantity bonus
         for team_member in self.team_members:
             if isinstance(team_member,Developer):
@@ -61,8 +68,9 @@ class Manager(Employee):
         elif self.expirience_years > 5:
             bonus = 500 + self.salary*0.2
 # team members quantity bonus
-        if self.len(self.team_members) > 5:
+        if len(self.team_members) > 5:
             team_bonus = 200
-        elif self.len(self.team_members) > 10:
+        elif len(self.team_members) > 10:
             team_bonus = 300
-        print (self.name + ' ' +  self.second_name + ' got salary ' + (fact_salary + bonus + team_bonus + developer_bonus))
+        gross_salary = fact_salary + bonus + team_bonus + developer_bonus
+        print (self.name + ' ' +  self.second_name + ' experience '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
