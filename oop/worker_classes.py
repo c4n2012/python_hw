@@ -25,7 +25,7 @@ class Employee(object):
         elif self.expirience_years > 5:
             bonus = 500 + self.salary*0.2
         gross_salary = self.salary + bonus 
-        print (self.name + ' ' +  self.second_name + ' experience '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
+        print (self.name + ' ' +  self.second_name + ' - experience - '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
 
 class Designer(Employee):
     def __init__(self,name,second_name,salary,expirience_years,main_manager,coefficient):
@@ -40,7 +40,7 @@ class Designer(Employee):
         elif self.expirience_years > 5:
             bonus = 500 + fact_salary*0.2
         gross_salary = fact_salary + bonus
-        print (self.name + ' ' +  self.second_name + ' experience '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
+        print (self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
 
 class Developer(Employee):
     pass
@@ -55,13 +55,12 @@ class Manager(Employee):
         team_bonus = 0
         developer_bonus = 0
         developer_counter = 0
-        fact_salary =  self.salary
 # team developers quantity bonus
         for team_member in self.team_members:
             if isinstance(team_member,Developer):
                 developer_counter += 1
         if developer_counter > len(self.team_members) % 2:
-            fact_salary =  self.salary * 0.1
+            developer_bonus =  self.salary * 0.1
 #experience bonus
         if  2 < self.expirience_years < 5:
             bonus = 200
@@ -72,5 +71,5 @@ class Manager(Employee):
             team_bonus = 200
         elif len(self.team_members) > 10:
             team_bonus = 300
-        gross_salary = fact_salary + bonus + team_bonus + developer_bonus
-        print (self.name + ' ' +  self.second_name + ' experience '+ str(self.expirience_years) + ' got salary ' + str(gross_salary))
+        gross_salary = self.salary + bonus + team_bonus + developer_bonus
+        print ('--TEAMLEAD-- '+self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
