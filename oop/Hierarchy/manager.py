@@ -1,5 +1,6 @@
 from .employee import Employee
 from .developer import Developer
+from .errors import NotEmployeeException,WrongEmployeeRoleError
 class Manager(Employee):
     def __init__(self, name, second_name, salary, expirience_years, main_manager, team_members):
         super().__init__(name, second_name, salary, expirience_years, main_manager)
@@ -25,3 +26,18 @@ class Manager(Employee):
             team_bonus = 300
         gross_salary = self.salary + expirience_bonus + team_bonus + developer_bonus
         print ('--TEAMLEAD-- '+self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
+
+    def add_team_member(self,new_team_member):
+        try:
+            if new_team_member == '':
+                raise NotEmployeeException
+            elif isinstance(new_team_member,Manager):
+                raise WrongEmployeeRoleError
+            else:
+                self.team_members += new_team_member
+        except NotEmployeeException:
+            print('You are trying to add empty employee')
+        except WrongEmployeeRoleError:
+            print ('Employee' + new_team_member.second_name + ' has unexpected role!')
+
+
