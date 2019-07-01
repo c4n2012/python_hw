@@ -1,7 +1,7 @@
-from Hierarchy.department import Department
-from Hierarchy.manager import Manager
-from Hierarchy.developer import Developer
-from Hierarchy.designer import Designer
+from Hierarchy import Department
+from Hierarchy import Manager
+from Hierarchy import Developer
+from Hierarchy import Designer
 
 #name,second_name,salary,expirience_years,main_manager,coefficient
 designer1 = Designer('Alex','Petrov',130,2,'manager1',0.5)
