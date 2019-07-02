@@ -7,7 +7,7 @@ class SalaryGivingError(softwareErrors):
     pass
 
 class NotEmployeeException(softwareErrors):
-    '''Raises when trying to add empty list to teammembers'''
+    '''Raises when trying to add empty list to team members'''
     pass
 class WrongEmployeeRoleError(softwareErrors):
     '''Raises when member is manager'''
