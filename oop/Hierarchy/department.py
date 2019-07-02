@@ -19,6 +19,7 @@ class Department(object):
             except SalaryGivingError:
                 print ("Manager "+ manager.second_name + " doesn't have a team")
                 break
+
     def add_team_members(self,manager: Manager ,team_members: Employee):
         for team_member in team_members:
             manager.add_team_member(team_member)

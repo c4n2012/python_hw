@@ -18,7 +18,9 @@ manager2 = Manager('Ann','Petan',500,4,'top_manager1',[designer3,designer4,devel
 department1 = Department('ITDep1',[manager1,manager2])
 department1.give_salary()
 
+print(manager1.__class__.__name__)
 developer5 = Developer('Vadr','Kov',340,3,'manager3')
 developer6 = Developer('Vadr6','Kov6',346,3,'manager3')
-manager3 = Manager('Man3','SNameMan3',500,4,'top_manager2',[developer5])
+manager3 = Manager('Man3','Manager3',500,4,'top_manager2',[developer5])
+manager3.add_team_member()
 manager3.add_team_member(manager2)
