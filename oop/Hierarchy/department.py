@@ -11,15 +11,16 @@ class Department(object):
         for manager in self.managers:
             try:
                 if len(manager.team_members) == 0:
-                    raise SalaryGivingError
+                    raise SalaryGivingError('No members in a team ERROR')
                 else:
                     manager.got_salary()
                     for employee in manager.team_members:
                         employee.got_salary()
             except SalaryGivingError:
-                print ("Manager "+ manager.second_name + " doesn't have a team")
-                break
+                print ("Manager "+ manager.second_name + " doesn't have a team! Exception")
+                #break
 
-    def add_team_members(self,manager,team_members):
-        for team_member in team_members:
-            manager.add_team_member(team_member)
+    def add_team_members(self,manager,team_members_array):
+        # for team_member in team_members:
+        #     print('add '+ team_member.second_name)
+            manager.add_team_members(team_members_array)

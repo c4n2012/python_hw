@@ -27,7 +27,7 @@ class Manager(Employee):
         gross_salary = self.salary + expirience_bonus + team_bonus + developer_bonus
         print ('--TEAMLEAD-- '+self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
 
-    def add_team_member(self, new_team_members):
+    def add_team_members(self, new_team_members):
         # print(args.__class__.__name__)
         try:
             if len(new_team_members) == 0:
@@ -37,12 +37,12 @@ class Manager(Employee):
                     raise WrongEmployeeRoleError('Employee' + m.second_name + ' is a manager!!!')
                 else:
                     self.team_members.append(m)
-                    print('Successfully added new team member to ' + self.second_name + '\'s team.')
+                    print('Successfully added ' + m.second_name + ' new team member to ' + self.second_name + '\'s team.')
 
         except NotEmployeeException:
-            print('You are trying to add an empty employee.-- from print --')
+            print('You are trying to add an empty employee. Exception')
 
         except WrongEmployeeRoleError:
-            print('Employee ' + m.second_name + ' has unexpected role!-- From print --')
+            print('Employee ' + m.second_name + ' has unexpected role! Exception')
 
 
