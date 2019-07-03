@@ -13,9 +13,9 @@ class Department(object):
                 if len(manager.team_members) == 0:
                     raise SalaryGivingError('No members in a team ERROR')
                 else:
-                    manager.got_salary()
+                    manager.print_salary()
                     for employee in manager.team_members:
-                        employee.got_salary()
+                        employee.print_salary()
             except SalaryGivingError:
                 print ("Manager "+ manager.second_name + " doesn't have a team! Exception")
                 #break

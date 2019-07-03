@@ -10,11 +10,16 @@ class Employee(object):
         bonus = 0
         if  2 < self.expirience_years < 5:
             bonus = 200
-        elif self.expirience_years > 5:
+        elif self.expirience_years >= 5:
             bonus = 500 + self.salary*0.2
         return bonus
 
     def got_salary(self):
         bonus = self.calculate_expirience_bonus(self.salary)
         gross_salary = self.salary + bonus
+        return gross_salary
+        # print (self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
+
+    def print_salary(self):
+        gross_salary = self.got_salary()
         print (self.name + ' ' +  self.second_name + ' - experience '+ str(self.expirience_years) + ' - got salary ' + str(gross_salary))
