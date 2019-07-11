@@ -1,7 +1,6 @@
 import requests, json
 import yaml
-
-api_url = "https://api.worldtradingdata.com/api/v1/stock?symbol=AAPL,MSFT,GM,AMSE&api_token=KFzAzKDWU88IAG2uQHp3i3kBa9RCkd3JAWJulicwGNHssxEwq0wElClEUACM"
+api_url = "https://api.worldtradingdata.com/api/v1/stock?symbol=AAPL,MSFT,GM,FB,AMZN&api_token=KFzAzKDWU88IAG2uQHp3i3kBa9RCkd3JAWJulicwGNHssxEwq0wElClEUACM"
 
 def get_data_from_remote_api(api_url):
     res = requests.get(api_url)
