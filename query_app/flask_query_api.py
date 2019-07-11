@@ -29,6 +29,9 @@ def yaml_converter_to_json(yml_src):
 def returnAll():
     return jsonify(var_list)
 
+
+
+
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5005)
 
