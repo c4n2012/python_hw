@@ -21,10 +21,10 @@ query_type: intraday"""
 yaml_src = yaml.load(a,Loader=yaml.FullLoader)
 #print(yaml_src)
 res = requests.post('http://localhost:5003/query/yml_data',data = b )
-print(res)
+print(res.content)
 
 res = requests.post('http://localhost:5003/query/yml_data',data = a )
-print(res)
+print(res.content)
 
 # get_response = requests.post('https://api.worldtradingdata.com/api/v1/stock?symbol=AMZN&api_token=0tkx6y1tk3MUvuaNBrye2iIhBACthLoa0gcLHTUSvON2qU7nHKHgmaHMucGn')
 # requests.post('https://httpbin.org/post', data={'key':'value'})

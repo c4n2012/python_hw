@@ -1,0 +1,13 @@
+[Unit]
+Description=Query flask application
+After=network.target
+
+[Service]
+User=webapp
+WorkingDirectory=/home/webapp/queryapp
+ExecStart=/home/webapp/.local/share/virtualenvs/queryapp-5IE_xFM5/bin/python flask_query_api.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
