@@ -9,8 +9,20 @@ symbols:
 - FB
 - AMZN
 query_type: realtime"""
+
+b = """---
+symbols:
+- MSFT
+day_range: 1
+time_interval: 60
+query_type: intraday"""
+
+
 yaml_src = yaml.load(a,Loader=yaml.FullLoader)
 #print(yaml_src)
+res = requests.post('http://localhost:5003/query/yml_data',data = b )
+print(res)
+
 res = requests.post('http://localhost:5003/query/yml_data',data = a )
 print(res)
 
