@@ -1,7 +1,7 @@
 Name:           query
 Version:        1.0
-Release:        0.1
-Summary:        rpm pac for our project
+Release:        0.2
+Summary:        Trading app query part 
 
 Group:          query_app
 BuildArch:      noarch
@@ -10,47 +10,52 @@ URL:            https://github.com/c4n2012/python_hw/tree/flask_app/query_app
 Source0:        query-1.0.tar.gz
 
 %description
-rpm package with 5 files
+Trading app query microservice
+
+%global	username queryapp
+
+%pre
+getent group %{username} >/dev/null || groupadd -r %{username}
+getent passwd %{username} >/dev/null || \
+useradd -r -g %{username} -M -s /sbin/nologin \
+-c "Account to own and run %{username}" %{username}
+exit
+
+%post
+/usr/bin/systemctl start %{username}.service >/dev/null 2>&1 && \
+/usr/bin/systemctl enable %{username}.service >/dev/null 2>&1
+
+%preun
+/usr/bin/systemctl stop %{username}.service >/dev/null 2>&1 && \
+/usr/bin/systemctl disable %{username}.service >/dev/null 2>&1
+
+%postun
+getent passwd %{username} >/dev/null && userdel -r %{username} >/dev/null 2>&1
 
 %prep
 
 %setup -q -c
 
 %build
-
 %install
-
-install -m 0755 -d %{buildroot}/opt/query-1.0
-install -m 0755 queryapp.service  %{buildroot}/opt/query-1.0/queryapp.service
-install -m 0775 query_class.py  %{buildroot}/opt/query-1.0/query_class.py
-install -m 0775 flask_query_api.py %{buildroot}/opt/query-1.0/flask_query_api.py
-install -m 0775 requirements.txt %{buildroot}/opt/query-1.0/requirements.txt
+[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
+install -m 0755 -d $RPM_BUILD_ROOT/opt/%{username}
+install -m 0755 -d $RPM_BUILD_ROOT/etc/systemd/system
+install -m 0755 -d $RPM_BUILD_ROOT/etc/default
+install -m 0750 flask_query_api.py $RPM_BUILD_ROOT/opt/%{username}/flask_query_api.py
+install -m 0750 query_class.py $RPM_BUILD_ROOT/opt/%{username}/query_class.py
+install -m 0750 requirements.txt $RPM_BUILD_ROOT/opt/%{username}/requirements.txt
+install -m 0644 %{username}.service $RPM_BUILD_ROOT/etc/systemd/system/%{username}.service
 
 %files
+%defattr(0750, %{username}, %{username}, 0755)
+/opt/%{username}
+/opt/%{username}/flask_query_api.py
+%attr(0644,root,root) /etc/systemd/system/%{username}.service
 
-/opt/query-1.0/*
-
-%pre
-getent group webapp >/dev/null || groupadd -r webapp
-getent passwd webapp >/dev/null || \
-useradd -r -g webapp -d /home/webapp -s /sbin/nologin \
-    -c "This account was created to run query python service" webapp
-exit 0
-%post
-/usr/local/bin/pip3 install -r /opt/query-1.0/requirements.txt
-mv /opt/query-1.0/queryapp.service /etc/systemd/system
-chmod 644 /etc/systemd/system/queryapp.service
-systemctl enable queryapp
-systemctl start queryapp
-%preun
-rm /opt/query-1.0/*
-rmdir /opt/query-1.0
-systemctl stop queryapp
-systemctl enable queryapp
-rm /etc/systemd/system/queryapp.service
-userdel webapp --remove
+%clean
+[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %changelog
-* Tue Jul 16 2019 Sergey Yanc  1.0.0.0
- - Initial rpm release
-
+* Jul 17 2019 Stazzz  1.0.2.0
+ - RPM release v.1.0.2
