@@ -46,6 +46,7 @@ install -m 0750 flask_query_api.py $RPM_BUILD_ROOT/opt/%{username}/flask_query_a
 install -m 0750 query_class.py $RPM_BUILD_ROOT/opt/%{username}/query_class.py
 install -m 0750 requirements.txt $RPM_BUILD_ROOT/opt/%{username}/requirements.txt
 install -m 0644 %{username}.service $RPM_BUILD_ROOT/etc/systemd/system/%{username}.service
+install -m 0644 %{username} $RPM_BUILD_ROOT/etc/default/%{username}
 
 %files
 %defattr(0750, %{username}, %{username}, 0755)

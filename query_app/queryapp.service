@@ -3,10 +3,16 @@ Description=Query flask application
 After=network.target
 
 [Service]
-User=webapp
-WorkingDirectory=/home/webapp/queryapp
-ExecStart=/home/webapp/.local/share/virtualenvs/queryapp-5IE_xFM5/bin/python flask_query_api.py
+User=queryapp
+WorkingDirectory=/opt/queryapp
+EnvironmentFile=/etc/default/queryapp
+ExecStart=/usr/bin/python3 flask_query_api.py ${ADDR} ${PORT}
 Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=queryapp
+
 
 [Install]
 WantedBy=multi-user.target
