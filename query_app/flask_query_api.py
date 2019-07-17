@@ -46,7 +46,7 @@ def config_data():
     return "UNKNOWN QUERY TYPE"
 
 if __name__ == '__main__':
-    app.run(host=app_run_address, port=app_run_port)
+    app.run(host='127.0.0.1', port='5003')
 
 
 
